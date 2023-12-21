@@ -66,14 +66,13 @@ input {
 .top {
     width: 80%;
     margin: 1rem auto;
+    display: flex;
+    justify-content: space-around;
 }
 
 .desc {
-    position: relative;
-    right: -90%;
-    bottom: 10%;
-    transform-origin: 0 0;
-    transform: rotate(270deg);
+    display: flex;
+    align-items: center;
 }
 
 .bot {
@@ -89,4 +88,50 @@ input {
 
 .bold {
     font-weight: 600;
+}
+
+.message {
+    text-align: center;
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #784018;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 25%;
+    width: 25%;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.dialog button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dialog button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 550px) {
+    .top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dialog {
+        width: 50%;
+    }
 }
