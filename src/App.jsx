@@ -20,8 +20,8 @@ function App() {
     try {
       if (event.key === 'Enter') {
         setLoading(true)
-        let res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=5ba3f2d3fa2816db87e9fe949691fc6e`)
         setError(false)
+        let res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=5ba3f2d3fa2816db87e9fe949691fc6e`)
         setData(res.data)
         setCity("")
         setLoading(false)
