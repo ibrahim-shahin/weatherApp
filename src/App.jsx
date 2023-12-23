@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = useState({})
   const [city, setCity] = useState("")
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState("")
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +21,7 @@ function App() {
       if (event.key === 'Enter') {
         setLoading(true)
         let res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=5ba3f2d3fa2816db87e9fe949691fc6e`)
-        setMessage('')
+        setError(false)
         setData(res.data)
         setCity("")
         setLoading(false)
@@ -29,7 +29,7 @@ function App() {
     }
     catch (err) {
       console.log(err)
-      setMessage("Invalid Input, please enter a valid location")
+      setError(true)
       setLoading(false)
     }
   }
@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <div className="app">
-        {loading && <p className='message'>Loading</p>}
+        {loading && <div class="loader"></div>}
 
         <div className="search">
           <input type="text" name="" id="" placeholder='Enter Location' value={city} onChange={input => { setCity(input.target.value) }} onKeyDown={getWether} />
@@ -68,27 +68,25 @@ function App() {
           <div className="bot">
 
             <div className="feels">
-              {data.main && <p>{Math.round(data.main.feels_like)} °C</p>}
-              <p>Feels like</p>
+              <p>Feels like: </p>
+              {data.main && <p>{Math.round(data.main.feels_like)}°C </p>}
             </div>
 
             <div className="humidity">
+              <p>Humidity: </p>
               {data.main && <p>{data.main.humidity}%</p>}
-              <p>Humidity</p>
             </div>
 
             <div className="wind">
+              <p>Wind Speed: </p>
               {data.wind && <p className='bold'>{data.wind.speed} kph</p>}
-              <p>Wind Speed</p>
             </div>
-
           </div>
-
         </div>
 
-        {message && (
+        {error && (
           <div className="dialog">
-            <p>{message}</p>
+            <p>⚠️ Invalid Input, please enter a valid location</p>
           </div>
         )}
       </div>
