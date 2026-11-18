@@ -171,6 +171,20 @@ export default function App() {
             WeatherHub
           </a>
           <SearchBox onSelect={choosePlace} />
+          {recent.length > 0 && (
+            <nav className="recent" aria-label="Recent places">
+              {recent.map((item) => (
+                <button
+                  type="button"
+                  key={`${item.latitude},${item.longitude}`}
+                  className={samePlace(item, shown?.place) ? 'chip is-current' : 'chip'}
+                  onClick={() => choosePlace(item)}
+                >
+                  {flagEmoji(item.countryCode)} {item.name}
+                </button>
+              ))}
+            </nav>
+          )}
           <div className="actions">
             <button
               type="button"
@@ -193,25 +207,13 @@ export default function App() {
           </div>
         </header>
 
-        {recent.length > 0 && (
-          <nav className="recent" aria-label="Recent places">
-            {recent.map((item) => (
-              <button
-                type="button"
-                key={`${item.latitude},${item.longitude}`}
-                className={samePlace(item, shown?.place) ? 'chip is-current' : 'chip'}
-                onClick={() => choosePlace(item)}
-              >
-                {flagEmoji(item.countryCode)} {item.name}
-              </button>
-            ))}
-          </nav>
-        )}
-
         {notice && (
-          <p className="notice" role="status">
-            {notice}
-          </p>
+          <div className="notice" role="status">
+            <span>{notice}</span>
+            <button type="button" aria-label="Dismiss" onClick={() => setNotice(null)}>
+              ×
+            </button>
+          </div>
         )}
 
         <main className={loading && shown && !error ? 'content is-refreshing' : 'content'} aria-busy={loading}>

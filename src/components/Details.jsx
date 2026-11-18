@@ -35,6 +35,7 @@ export default function Details({ forecast, units }) {
     },
     { label: 'Sunrise', value: today.sunrise ? formatTime(today.sunrise) : '–' },
     { label: 'Sunset', value: today.sunset ? formatTime(today.sunset) : '–' },
+    { label: 'Cloud cover', value: current.cloudCover == null ? '–' : `${current.cloudCover}%` },
     { label: 'Pressure', value: formatPressure(current.pressure, units) },
   ]
 

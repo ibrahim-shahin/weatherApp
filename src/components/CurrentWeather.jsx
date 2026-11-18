@@ -25,8 +25,8 @@ export default function CurrentWeather({ place, forecast, weather, units }) {
 
       <div className="current-main">
         <WeatherIcon icon={weather.icon} isDay={weather.isDay} label={weather.label} size={112} animated />
-        <div>
-          <p className="temp">{formatTemp(current.temperature, units)}</p>
+        <p className="temp">{formatTemp(current.temperature, units)}</p>
+        <div className="current-text">
           <p className="condition">{weather.label}</p>
           <p className="muted">
             Feels like {formatTemp(current.feelsLike, units)} · H {formatTemp(today.max, units)} · L{' '}

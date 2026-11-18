@@ -8,7 +8,8 @@ Current weather, the next 24 hours and a 7-day forecast for any city, or for whe
 - Your location, with the browser's permission.
 - °C / °F. Your choice, your last place and your recent places are remembered on the device.
 - The background follows the weather and the time of day: clear, cloudy, fog, rain, snow or storm.
-- Works on any screen from a 320 px phone up, and nothing on the page is an image.
+- Works on any screen from a 320 px phone up, and nothing on the page is an image. On laptops and desktops
+  the whole forecast fits on one screen, without scrolling.
 
 Weather data comes from [Open-Meteo](https://open-meteo.com/), which needs no API key.
 

@@ -34,7 +34,7 @@ test('opens on Amman with the current conditions, 24 hours and 7 days', async ()
   expect(screen.getByText(current(amman.current.temperature_2m), { selector: '.temp' })).toBeInTheDocument()
   expect(within(screen.getByRole('region', { name: 'Next 24 hours' })).getAllByRole('listitem')).toHaveLength(24)
   expect(within(screen.getByRole('region', { name: '7-day forecast' })).getAllByRole('listitem')).toHaveLength(7)
-  expect(document.title).toContain('Amman')
+  await waitFor(() => expect(document.title).toContain('Amman')) // set by an effect after paint
 })
 
 test('switches to Fahrenheit and remembers it', async () => {
